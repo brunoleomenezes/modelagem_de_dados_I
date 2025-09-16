@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atividade em Grupo — Projeto de Banco de Dados</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --border: #e5e7eb;
+    }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      background: var(--card);
+      color: var(--text);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1rem;
+      color: var(--muted);
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    section {
+      background: var(--card);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+    }
+    h2 {
+      color: var(--text);
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+    h3 {
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      color: var(--muted);
+    }
+    ul, ol {
+      padding-left: 1.2rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Atividade em Grupo — Projeto de Banco de Dados</h1>
+    <p>Disciplina: Modelagem de Dados I (MD I)</p>
+  </header>
+  <main>
+    <section>
+      <h2>Objetivo</h2>
+      <p>Construir, em grupo, um <strong>projeto de banco de dados completo</strong>, passando pelas etapas:</p>
+      <ol>
+        <li>Levantamento de requisitos.</li>
+        <li>Modelo Entidade-Relacionamento (DER).</li>
+        <li>Modelo Relacional (MR).</li>
+        <li>Implementação em SQL no OneCompiler PostgreSQL.</li>
+        <li>Execução de consultas.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Etapas da Atividade</h2>
+      <h3>1. Levantamento de Requisitos</h3>
+      <ul>
+        <li>Identificar os principais atores do sistema (clientes, funcionários, produtos, pedidos, etc.).</li>
+        <li>Listar os dados que precisam ser armazenados.</li>
+      </ul>
+
+      <h3>2. Modelo Conceitual (DER)</h3>
+      <ul>
+        <li>Construir o diagrama em dbdiagram.io, draw.io ou papel.</li>
+        <li>Incluir entidades, atributos, relacionamentos e cardinalidades.</li>
+      </ul>
+
+      <h3>3. Modelo Relacional (MR)</h3>
+      <ul>
+        <li>Migrar o DER para tabelas relacionais.</li>
+        <li>Definir tabelas, atributos, chaves primárias e estrangeiras.</li>
+        <li>Normalizar até a 3FN.</li>
+      </ul>
+
+      <h3>4. Implementação em SQL</h3>
+      <ul>
+        <li>Criar tabelas no <strong>OneCompiler PostgreSQL</strong> com <code>CREATE TABLE</code>.</li>
+        <li>Definir tipos de dados, <code>PRIMARY KEY</code>, <code>FOREIGN KEY</code>, <code>NOT NULL</code>, <code>UNIQUE</code>.</li>
+        <li>Inserir ao menos 5 registros por tabela.</li>
+      </ul>
+
+      <h3>5. Consultas SQL</h3>
+      <p>Criar pelo menos 5 consultas. Exemplos:</p>
+      <ul>
+        <li>Listar todos os clientes.</li>
+        <li>Mostrar pedidos feitos em uma data.</li>
+        <li>Encontrar o produto mais vendido.</li>
+        <li>Calcular total de vendas de um cliente.</li>
+        <li>Listar serviços de um funcionário específico.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Cenário 1 — E-commerce de Eletrônicos "TechStore RJ"</h2>
+      <h3>Contexto</h3>
+      <p>A TechStore RJ é uma loja virtual de eletrônicos (celulares, notebooks, periféricos). O banco deve organizar clientes, pedidos, estoque, entregas e pagamentos.</p>
+
+      <h3>Requisitos</h3>
+      <ul>
+        <li><strong>Clientes:</strong> nome, CPF, e-mail, telefones, endereços.</li>
+        <li><strong>Produtos:</strong> código, nome, descrição, preço, marca, categoria, estoque, desconto.</li>
+        <li><strong>Pedidos:</strong> data, status, forma de pagamento; cada cliente pode ter vários pedidos.</li>
+        <li><strong>Pagamentos:</strong> data, valor, status, info do meio (cartão, pix, boleto).</li>
+        <li><strong>Entregas:</strong> transportadora, rastreio, prazos, status.</li>
+      </ul>
+
+      <h3>Regras</h3>
+      <ul>
+        <li>Estoque reduz quando o pedido é confirmado.</li>
+        <li>Pedido precisa ter ao menos 1 item.</li>
+        <li>Cliente pode ter até 3 endereços de entrega.</li>
+        <li>Entrega só ocorre após pagamento.</li>
+      </ul>
+
+      <h3>Exemplo de Dados</h3>
+      <ul>
+        <li>Cliente João Silva, CPF 123.456.789-10, 2 telefones, 1 endereço.</li>
+        <li>Produto Notebook Dell Inspiron 15, R$ 3.500, estoque 20.</li>
+        <li>Pedido 02/09/2025, status pago, cliente João.</li>
+        <li>Itens: 1 notebook + 2 mouses sem fio.</li>
+        <li>Pagamento: cartão Visa, final 1234, valor R$ 3.960.</li>
+        <li>Entrega: Correios, rastreio BR123456, entregue 05/09/2025.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Cenário 2 — Clínica Médica "Vida & Saúde"</h2>
+      <h3>Contexto</h3>
+      <p>A clínica oferece consultas médicas e exames. O banco deve organizar pacientes, médicos, consultas, receitas, exames e faturamento.</p>
+
+      <h3>Requisitos</h3>
+      <ul>
+        <li><strong>Pacientes:</strong> dados pessoais, convênio opcional, histórico de alergias.</li>
+        <li><strong>Médicos:</strong> nome, CRM, especialidade, contatos, agenda.</li>
+        <li><strong>Consultas:</strong> data, hora, paciente, médico, sala, status.</li>
+        <li><strong>Receitas:</strong> ligadas à consulta, medicamentos com dosagem.</li>
+        <li><strong>Exames:</strong> tipo, data, resultado, médico responsável.</li>
+        <li><strong>Faturamento:</strong> valor, forma de pagamento (dinheiro, cartão, convênio), status.</li>
+      </ul>
+
+      <h3>Regras</h3>
+      <ul>
+        <li>Paciente pode ter várias consultas, cada uma com 1 médico.</li>
+        <li>Uma consulta pode gerar múltiplos exames.</li>
+        <li>Receita está sempre vinculada à consulta.</li>
+        <li>Pagamentos podem ser particulares ou convênio.</li>
+        <li>Exames só após consulta.</li>
+      </ul>
+
+      <h3>Exemplo de Dados</h3>
+      <ul>
+        <li>Paciente Maria Souza, CPF 987.654.321-00, convênio Unimed, carteirinha 11223344.</li>
+        <li>Médico Dr. Carlos Mendes, CRM 12345, cardiologista.</li>
+        <li>Consulta 10/09/2025 às 14h, status realizada.</li>
+        <li>Receita: Dipirona 500mg, 1 comprimido a cada 8h por 5 dias.</li>
+        <li>Exame: Eletrocardiograma, resultado normal, 11/09/2025.</li>
+        <li>Pagamento: convênio Unimed, autorizado, valor R$ 150.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Entregáveis</h2>
+      <ol>
+        <li>DER (imagem ou desenho).</li>
+        <li>Modelo Relacional (tabelas e chaves).</li>
+        <li>Script SQL no OneCompiler (CREATE + INSERT).</li>
+        <li>Consultas SQL com resultados.</li>
+        <li>Relatório em PDF ou apresentação curta (5-10 min).</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Critérios de Avaliação</h2>
+      <ul>
+        <li>Clareza e organização do DER (20%).</li>
+        <li>Correção do Modelo Relacional e normalização (20%).</li>
+        <li>Implementação em SQL correta (20%).</li>
+        <li>Qualidade das consultas SQL (20%).</li>
+        <li>Apresentação e defesa do projeto (20%).</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 — Curso Técnico em Informática / FAETEC</p>
+  </footer>
+</body>
+</html>
