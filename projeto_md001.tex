@@ -1,0 +1,192 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\geometry{margin=2.5cm}
+\setstretch{1.2}
+
+% Configuração de títulos
+\usepackage{titlesec}
+\titleformat{\section}{\bfseries\Large}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection.}{0.5em}{}
+
+\begin{document}
+
+\begin{center}
+    \Large \textbf{Atividade em Grupo — Projeto de Banco de Dados} \\[0.5cm]
+    \normalsize \textbf{Disciplina:} Modelagem de Dados I (MD I) \\[0.2cm]
+\end{center}
+
+\vspace{0.5cm}
+
+\noindent \textbf{Turma:} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\textbf{Grupo:} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\textbf{Integrantes:} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+\vspace{0.5cm}
+
+\section*{Objetivo}
+Construir, em grupo, um \textbf{projeto de banco de dados completo}, passando pelas etapas de:
+\begin{enumerate}
+    \item Levantamento de requisitos.
+    \item Modelo Entidade-Relacionamento (DER).
+    \item Modelo Relacional (MR).
+    \item Implementação em SQL no OneCompiler PostgreSQL.
+    \item Execução de consultas.
+\end{enumerate}
+
+\section*{Situação-Problema}
+Vocês são \textbf{analistas de sistemas} contratados para informatizar uma \textbf{pequena empresa}.  
+Cada grupo poderá escolher ou receber um dos cenários descritos a seguir.  
+
+\section*{Etapas da Atividade}
+
+\subsection*{1. Levantamento de Requisitos}
+\begin{itemize}
+    \item Identifiquem os principais atores do sistema (clientes, funcionários, produtos, pedidos, serviços, etc.).
+    \item Façam uma lista dos dados que precisam ser armazenados.
+\end{itemize}
+
+\subsection*{2. Modelo Conceitual (DER)}
+\begin{itemize}
+    \item Construam o Diagrama Entidade-Relacionamento (DER) usando \textbf{dbdiagram.io}, \textbf{draw.io} ou no papel.
+    \item Incluam: entidades, atributos, relacionamentos e cardinalidades.
+\end{itemize}
+
+\subsection*{3. Modelo Relacional (MR)}
+\begin{itemize}
+    \item Migrem o DER para tabelas relacionais.
+    \item Definam: nome das tabelas, atributos, chaves primárias e estrangeiras.
+    \item Normalizem até a 3FN, justificando brevemente.
+\end{itemize}
+
+\subsection*{4. Implementação em SQL (OneCompiler PostgreSQL)}
+\begin{itemize}
+    \item Criem as tabelas usando \texttt{CREATE TABLE}.
+    \item Definam corretamente tipos de dados, \texttt{PRIMARY KEY}, \texttt{FOREIGN KEY}, \texttt{NOT NULL}, \texttt{UNIQUE}.
+    \item Insiram pelo menos 5 registros por tabela usando \texttt{INSERT INTO}.
+\end{itemize}
+
+\subsection*{5. Consultas SQL}
+Elaborem pelo menos 5 consultas que respondam a perguntas do negócio. Exemplos:
+\begin{itemize}
+    \item Listar todos os clientes cadastrados.
+    \item Mostrar pedidos feitos em determinada data.
+    \item Encontrar o produto mais vendido.
+    \item Calcular o total de vendas de um cliente.
+    \item Listar serviços realizados por um funcionário específico.
+\end{itemize}
+
+\section*{Entregáveis}
+Cada grupo deverá entregar:
+\begin{enumerate}
+    \item DER (imagem ou desenho).
+    \item Modelo Relacional (tabelas com atributos e chaves).
+    \item Script SQL usado no OneCompiler (CREATE + INSERT).
+    \item Consultas SQL com resultados exibidos.
+    \item Relatório final em PDF ou apresentação curta (5 a 10 min) explicando as escolhas.
+\end{enumerate}
+
+\section*{Critérios de Avaliação}
+\begin{itemize}
+    \item Clareza e organização do DER (20\%).
+    \item Correção do Modelo Relacional e normalização (20\%).
+    \item Implementação em SQL correta no OneCompiler (20\%).
+    \item Qualidade das consultas SQL (20\%).
+    \item Apresentação e defesa do projeto (20\%).
+\end{itemize}
+
+\vspace{0.5cm}
+\noindent \textbf{Espaço para Anotações do Grupo:}
+\vspace{3cm}
+
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{2cm}
+
+\noindent \rule{\textwidth}{0.4pt}
+\vspace{2cm}
+
+\noindent \rule{\textwidth}{0.4pt}
+
+\newpage
+\section*{Cenário 1 — E-commerce de Eletrônicos ``TechStore RJ''}
+
+\subsection*{Contexto}
+A \textbf{TechStore RJ} é uma loja virtual especializada em venda de eletrônicos (celulares, notebooks, periféricos e acessórios).  
+A empresa precisa organizar seus dados em um banco de dados relacional para controlar clientes, pedidos, estoque, entregas e pagamentos.
+
+\subsection*{Requisitos levantados}
+\begin{enumerate}
+    \item \textbf{Clientes}: cada cliente possui nome, CPF, e-mail, telefone, endereço completo (rua, número, bairro, cidade, estado, CEP). Um cliente pode ter mais de um telefone e mais de um endereço de entrega.
+    \item \textbf{Produtos}: cadastrados com código, nome, descrição, preço unitário, marca, categoria (ex.: celular, notebook, periférico) e quantidade em estoque. Podem ter desconto promocional.
+    \item \textbf{Pedidos}: cada pedido possui data, status (em aberto, pago, enviado, entregue, cancelado) e forma de pagamento (cartão, boleto, pix). Um cliente pode ter vários pedidos, e cada pedido pertence a um único cliente. Um pedido pode ter vários itens (produto + quantidade).
+    \item \textbf{Pagamentos}: cada pedido gera um pagamento: data, valor total, status (pago, pendente, recusado). Se cartão: registrar número parcial (últimos 4 dígitos) e bandeira. Se pix: chave pix usada. Se boleto: código de barras.
+    \item \textbf{Entregas}: cada pedido pago gera uma entrega: transportadora, código de rastreio, prazo estimado, data de entrega. Status: em transporte, entregue, devolvido.
+\end{enumerate}
+
+\subsection*{Entidades sugeridas}
+Clientes, TelefonesCliente, EnderecosCliente, Produtos, Categorias, Pedidos, ItensPedido, Pagamentos, Entregas.
+
+\subsection*{Regras de negócio}
+\begin{itemize}
+    \item O estoque deve ser reduzido quando o pedido é confirmado.
+    \item Não pode haver pedido sem pelo menos 1 item.
+    \item Um cliente pode cadastrar até 3 endereços diferentes de entrega.
+    \item O pagamento precisa estar \textbf{pago} para liberar a entrega.
+\end{itemize}
+
+\subsection*{Exemplos de dados}
+\begin{itemize}
+    \item Cliente: João Silva, CPF 123.456.789-10, e-mail joao@email.com, 2 telefones, 1 endereço.
+    \item Produto: Notebook Dell Inspiron 15, R\$ 3.500,00, estoque 20.
+    \item Pedido: 02/09/2025, status = pago, cliente João.
+    \item Itens: 1 notebook Dell + 2 mouses sem fio.
+    \item Pagamento: cartão Visa, final 1234, valor total R\$ 3.960,00.
+    \item Entrega: Transportadora Correios, código BR123456, entregue em 05/09/2025.
+\end{itemize}
+
+\newpage
+\section*{Cenário 2 — Clínica Médica ``Vida \& Saúde''}
+
+\subsection*{Contexto}
+A \textbf{Clínica Vida \& Saúde} oferece consultas médicas e exames laboratoriais.  
+O objetivo é criar um banco de dados para organizar pacientes, médicos, consultas, exames, receitas e faturamento.
+
+\subsection*{Requisitos levantados}
+\begin{enumerate}
+    \item \textbf{Pacientes}: nome, CPF, RG, sexo, data de nascimento, telefone, e-mail, endereço completo. Um paciente pode ter plano de saúde ou ser particular. Deve haver registro de histórico de alergias.
+    \item \textbf{Médicos}: nome, CRM, especialidade (cardiologia, ortopedia, pediatria, etc.), telefone, e-mail. Um médico pode atender em vários horários e dias da semana.
+    \item \textbf{Consultas}: data, hora, paciente, médico, sala, status (agendada, realizada, cancelada). Cada consulta pode gerar uma receita médica.
+    \item \textbf{Receitas médicas}: associadas a uma consulta. Contêm medicamentos (nome, dosagem, instruções).
+    \item \textbf{Exames}: associados a uma consulta (opcional). Tipo de exame (sangue, raio-x, ultrassom, etc.), data do exame, resultado e médico responsável.
+    \item \textbf{Faturamento}: cada consulta/exame gera uma cobrança: valor, forma de pagamento (dinheiro, cartão, convênio), status do pagamento. Convênios precisam registrar número da carteirinha e operadora.
+\end{enumerate}
+
+\subsection*{Entidades sugeridas}
+Pacientes, TelefonesPaciente, Médicos, Consultas, Receitas, ItensReceita, Exames, Pagamentos, Convenios.
+
+\subsection*{Regras de negócio}
+\begin{itemize}
+    \item Um paciente pode agendar várias consultas, mas uma consulta é sempre com um único médico.
+    \item Uma consulta pode gerar múltiplos exames.
+    \item Receita médica está sempre vinculada a uma consulta.
+    \item O pagamento pode ser particular ou via convênio.
+    \item Exames só podem ser realizados após a consulta.
+\end{itemize}
+
+\subsection*{Exemplos de dados}
+\begin{itemize}
+    \item Paciente: Maria Souza, CPF 987.654.321-00, convênio Unimed, carteirinha 11223344.
+    \item Médico: Dr. Carlos Mendes, CRM 12345, especialidade cardiologia.
+    \item Consulta: 10/09/2025 às 14h, status realizada.
+    \item Receita: Dipirona 500mg (1 comprimido a cada 8h por 5 dias).
+    \item Exame: Eletrocardiograma, resultado normal, realizado em 11/09/2025.
+    \item Pagamento: convênio Unimed, autorizado, valor R\$ 150,00 repassado pela operadora.
+\end{itemize}
+
+\end{document}
